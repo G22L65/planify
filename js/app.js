@@ -12,10 +12,16 @@ const App = (() => {
     calendarGrid: null
   };
 
+  // ─── Default Config (public client-side keys) ───
+  const DEFAULTS = {
+    geminiKey: 'AIzaSyA5UpKQ633XfrUtUS9jviNFp-nJctZxyOQ',
+    gcalClientId: '296940098399-hu7bvqlj3pgpb5snl06ua05o7sav37cf.apps.googleusercontent.com'
+  };
+
   // ─── Settings ───
   function getSetting(key) {
     const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
-    return s[key] || '';
+    return s[key] || DEFAULTS[key] || '';
   }
   function setSetting(key, val) {
     const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
@@ -184,12 +190,12 @@ const App = (() => {
       <div class="modal-field">
         <label>Gemini API Key</label>
         <input type="password" id="set-gemini-key" value="${getSetting('geminiKey')}" placeholder="AIza..." />
-        <div class="hint">Used for AI-powered plan generation. Stored locally only.</div>
+        <div class="hint">Used for AI-powered plan generation. Pre-configured by default.</div>
       </div>
       <div class="modal-field">
         <label>Google Calendar Client ID</label>
         <input type="text" id="set-gcal-id" value="${getSetting('gcalClientId')}" placeholder="xxxx.apps.googleusercontent.com" />
-        <div class="hint">OAuth 2.0 Client ID from Google Cloud Console.</div>
+        <div class="hint">OAuth 2.0 Client ID. Pre-configured by default.</div>
       </div>
     `, () => {
       setSetting('geminiKey', document.getElementById('set-gemini-key').value.trim());
