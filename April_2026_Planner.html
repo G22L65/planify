@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Monthly Planner – April 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #f0ebe0;
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding: 24px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .page {
+    background: #faf6ee;
+    border: 2px solid #c9a87c;
+    border-radius: 18px;
+    width: 1120px;
+    padding: 22px 28px 20px;
+    box-shadow: 0 6px 36px rgba(0,0,0,0.12);
+  }
+
+  .top-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-size: 11.5px; color: #555; margin-bottom: 4px;
+  }
+  .top-meta .points { text-align: right; line-height: 1.8; }
+
+  .title-block { text-align: center; margin: 2px 0 2px; position: relative; }
+  .sparkle { color: #c5b4e3; position: absolute; }
+  .sparkle.tl { top: 0; left: 70px;  font-size: 22px; }
+  .sparkle.tr { top: 0; right: 70px; font-size: 22px; }
+  .sparkle.bl { bottom: 0; left: 180px;  font-size: 14px; }
+  .sparkle.br { bottom: 0; right: 180px; font-size: 14px; }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700;
+    color: #b5651d; letter-spacing: 3px; text-transform: uppercase;
+  }
+
+  .month-row {
+    display: flex; justify-content: center; gap: 80px;
+    margin: 8px 0 14px;
+    font-size: 20px; color: #b5651d;
+    font-family: 'Dancing Script', cursive;
+  }
+  .month-row .val {
+    color: #222; font-family: 'Lato', sans-serif;
+    font-weight: 300; font-size: 20px;
+    border-bottom: 1px solid #999;
+    padding: 0 14px; display: inline-block; min-width: 160px; text-align: center;
+  }
+
+  .outer-wrap { display: flex; gap: 0; align-items: stretch; }
+
+  .side-labels {
+    display: flex; flex-direction: column;
+    justify-content: space-around;
+    width: 20px; flex-shrink: 0;
+    padding: 34px 0 2px;
+  }
+  .side-lbl {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 10px; font-weight: 700;
+    color: #999; letter-spacing: 2px; text-transform: uppercase; text-align: center;
+  }
+
+  .cal-wrap { flex: 1; }
+  table { width: 100%; border-collapse: collapse; }
+
+  thead th {
+    background: #ddd6f0; color: #4a3f7a;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 1.5px;
+    text-align: center; padding: 7px 4px;
+    border: 1px solid #c8bfe0;
+  }
+
+  td {
+    vertical-align: top;
+    border: 1px solid #d8cfe8;
+    padding: 4px 5px 5px 5px;
+    width: calc(100% / 7);
+    background: #fffdf8;
+  }
+  tr:nth-child(odd)  td { background: #f7f4fc; }
+  tr:nth-child(even) td { background: #fffdf8; }
+  td.empty { background: transparent !important; border-color: transparent; }
+
+  /* date number */
+  .dn     { font-size: 26px; font-weight: 700; color: #b5651d; line-height:1; float:left; margin-right:4px; }
+  .dn.sun { color: #c0392b; font-size: 28px; }
+
+  /* task list */
+  .tasks { font-size: 9.3px; color: #333; line-height: 1.52; overflow: hidden; }
+  .tasks li { list-style: none; }
+
+  /* colour per task */
+  .ex   { color: #1e8449; font-weight: 700; }   /* Exercise  – green  */
+  .ml   { color: #7d3c98; font-weight: 700; }   /* ML        – purple */
+  .dsa  { color: #c0392b; font-weight: 700; }   /* DSA       – red    */
+  .cpp  { color: #1a5276; font-weight: 700; }   /* C++       – navy   */
+  .ip   { color: #ca6f1e; font-weight: 700; }   /* Interview – orange */
+  .proj { color: #148f77; font-weight: 700; }   /* Project   – teal   */
+  .rev  { color: #6c3483; font-weight: 700; }   /* Revision  – violet */
+
+  td.sun-cell { background: #f5f0ff !important; }
+  .rest { font-size: 12px; font-weight: 700; color: #c0392b; margin-top: 3px; display:block; }
+
+  /* legend */
+  .legend {
+    margin-top: 10px; font-size: 9.6px; color: #666;
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    border-top: 1px solid #e0d8c8; padding-top: 8px;
+  }
+  .ld { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top-meta">
+    <div>sleep time : &nbsp; 11.30pm – 5.30am &nbsp; ±30 min</div>
+    <div class="points">Total Points : 108<br>Achieved Points : ______</div>
+  </div>
+
+  <div class="title-block">
+    <span class="sparkle tl">✦</span><span class="sparkle tr">✦</span>
+    <span class="sparkle bl">✦</span><span class="sparkle br">✦</span>
+    <div class="main-title">Monthly Planner</div>
+  </div>
+
+  <div class="month-row">
+    <div>Month: <span class="val">April</span></div>
+    <div>Year:&nbsp; <span class="val">2026</span></div>
+  </div>
+
+  <div class="outer-wrap">
+    <div class="side-labels">
+      <div class="side-lbl">Sleep</div>
+      <div class="side-lbl">Gym</div>
+      <div class="side-lbl">Code</div>
+      <div class="side-lbl">Walk Up</div>
+      <div class="side-lbl">Repeat</div>
+    </div>
+
+    <div class="cal-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>MONDAY</th><th>TUESDAY</th><th>WEDNESDAY</th>
+          <th>THURSDAY</th><th>FRIDAY</th><th>SATURDAY</th><th>SUNDAY</th>
+        </tr>
+      </thead>
+      <tbody>
+
+<!-- April 2026: Apr 1 = Wednesday
+  Week 1:  —   —   1   2   3   4   5(Sun)
+  Week 2:  6   7   8   9  10  11  12(Sun)
+  Week 3: 13  14  15  16  17  18  19(Sun)
+  Week 4: 20  21  22  23  24  25  26(Sun)
+  Week 5: 27  28  29  30   —   —   —        -->
+
+<!-- ── weekday task block (reused every Mon–Sat cell) ──
+  1. Exercise
+  2. ML
+  3. DSA
+  4. C++
+  5. Interview Prep Q [ti+pi]
+  6. Project
+ ── sunday task block ──
+  1. Revision
+  2. Interview-oriented Q
+  + REST
+-->
+
+<!-- WEEK 1 -->
+<tr>
+  <td class="empty"></td><td class="empty"></td>
+
+  <td><span class="dn">1</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">2</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">3</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">4</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td class="sun-cell"><span class="dn sun">5</span><ul class="tasks">
+    <li><span class="rev">1. Revision</span></li>
+    <li><span class="ip">2. Interview-oriented Q</span></li>
+  </ul><span class="rest">+ REST</span></td>
+</tr>
+
+<!-- WEEK 2 -->
+<tr>
+  <td><span class="dn">6</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">7</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">8</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">9</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">10</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">11</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td class="sun-cell"><span class="dn sun">12</span><ul class="tasks">
+    <li><span class="rev">1. Revision</span></li>
+    <li><span class="ip">2. Interview-oriented Q</span></li>
+  </ul><span class="rest">+ REST</span></td>
+</tr>
+
+<!-- WEEK 3 -->
+<tr>
+  <td><span class="dn">13</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">14</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">15</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">16</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">17</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">18</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td class="sun-cell"><span class="dn sun">19</span><ul class="tasks">
+    <li><span class="rev">1. Revision</span></li>
+    <li><span class="ip">2. Interview-oriented Q</span></li>
+  </ul><span class="rest">+ REST</span></td>
+</tr>
+
+<!-- WEEK 4 -->
+<tr>
+  <td><span class="dn">20</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">21</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">22</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">23</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">24</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">25</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td class="sun-cell"><span class="dn sun">26</span><ul class="tasks">
+    <li><span class="rev">1. Revision</span></li>
+    <li><span class="ip">2. Interview-oriented Q</span></li>
+  </ul><span class="rest">+ REST</span></td>
+</tr>
+
+<!-- WEEK 5 -->
+<tr>
+  <td><span class="dn">27</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">28</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">29</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td><span class="dn">30</span><ul class="tasks">
+    <li><span class="ex">1. Exercise</span></li>
+    <li><span class="ml">2. ML</span></li>
+    <li><span class="dsa">3. DSA</span></li>
+    <li><span class="cpp">4. C++</span></li>
+    <li><span class="ip">5. Interview Prep Q [ti+pi]</span></li>
+    <li><span class="proj">6. Project</span></li>
+  </ul></td>
+
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+</tr>
+
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div><span class="ld" style="background:#1e8449"></span><b style="color:#1e8449">Exercise</b></div>
+    <div><span class="ld" style="background:#7d3c98"></span><b style="color:#7d3c98">ML</b></div>
+    <div><span class="ld" style="background:#c0392b"></span><b style="color:#c0392b">DSA</b></div>
+    <div><span class="ld" style="background:#1a5276"></span><b style="color:#1a5276">C++</b></div>
+    <div><span class="ld" style="background:#ca6f1e"></span><b style="color:#ca6f1e">Interview Prep Q [ti+pi]</b></div>
+    <div><span class="ld" style="background:#148f77"></span><b style="color:#148f77">Project</b></div>
+    <div><span class="ld" style="background:#6c3483"></span><b style="color:#6c3483">Sunday: Revision + Interview-oriented Q + REST</b></div>
+  </div>
+
+</div>
+</body>
+</html>
