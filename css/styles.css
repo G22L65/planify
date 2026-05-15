@@ -419,70 +419,8 @@ td:hover .add-task-btn { opacity: 1; }
   font-size: 22px; font-weight: 600;
 }
 
-/* ─── Print Preview Container ─── */
-#print-area {
-  background: #faf6ee;
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  color: #222;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-#print-area .print-title {
-  text-align: center; margin-bottom: 20px;
-}
-#print-area .print-title h1 {
-  font-family: var(--font-heading);
-  font-size: 36px; font-weight: 700;
-  color: #7c3aed;
-  letter-spacing: 2px;
-}
-#print-area .print-title p {
-  font-size: 16px; color: #666; margin-top: 4px;
-}
-#print-area table {
-  width: 100%; border-collapse: collapse;
-}
-#print-area thead th {
-  background: #ede9fe;
-  color: #5b21b6;
-  padding: 10px 6px;
-  font-size: 11px; font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border: 1px solid #d8d0f0;
-  text-align: center;
-}
-#print-area tbody td {
-  border: 1px solid #e5e0f0;
-  padding: 6px 7px;
-  vertical-align: top;
-  min-height: 90px;
-  width: calc(100% / 7);
-}
-#print-area tbody td.empty-print { background: #f5f3ee; border-color: #eee; }
-#print-area tbody tr:nth-child(odd) td:not(.empty-print) { background: #f8f5ff; }
-#print-area tbody tr:nth-child(even) td:not(.empty-print) { background: #fffdf8; }
-#print-area .print-dn {
-  font-family: var(--font-heading);
-  font-size: 22px; font-weight: 700;
-  color: #b5651d;
-  float: left; margin-right: 4px; line-height: 1;
-}
-#print-area .print-dn.sun { color: #c0392b; font-size: 24px; }
-#print-area .print-tasks { list-style: none; font-size: 10px; line-height: 1.6; }
-#print-area .print-tasks li { margin-bottom: 1px; }
-#print-area .print-legend {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 14px; padding-top: 10px;
-  border-top: 1px solid #e0d8c8;
-  font-size: 10px; color: #666;
-}
-#print-area .legend-dot {
-  display: inline-block; width: 8px; height: 8px;
-  border-radius: 50%; margin-right: 4px; vertical-align: middle;
-}
+/* #print-area base styles are now in css/themes.css */
+
 
 /* ─── Modal ─── */
 .modal-overlay {

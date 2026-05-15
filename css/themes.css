@@ -1,0 +1,487 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Planify — Planner Themes
+   Applies to #print-area via data-theme attribute
+   ───────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:wght@700&family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&family=Bebas+Neue&display=swap');
+
+/* ─── Theme Swatch Picker (UI chrome, not print area) ─── */
+.theme-picker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 40px;
+  padding: 6px 14px;
+}
+.theme-picker-label {
+  font-size: 12px;
+  color: #8a8a9a;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.theme-swatches {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.theme-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  position: relative;
+}
+.theme-swatch:hover {
+  transform: scale(1.2);
+  border-color: rgba(255,255,255,0.5);
+}
+.theme-swatch.active {
+  border-color: #fff;
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+}
+/* Swatch colors */
+.theme-swatch[data-theme="classic"]  { background: linear-gradient(135deg, #7c3aed, #2563eb); }
+.theme-swatch[data-theme="cherry"]   { background: linear-gradient(135deg, #f9a8d4, #fda4af); }
+.theme-swatch[data-theme="pastel"]   { background: linear-gradient(135deg, #a5f3fc, #c4b5fd, #fef08a); }
+.theme-swatch[data-theme="cozy"]     { background: linear-gradient(135deg, #d4956a, #a8896c); }
+.theme-swatch[data-theme="minimal"]  { background: #f5f5f5; border: 2px solid #ccc; }
+.theme-picker-name {
+  font-size: 11px;
+  color: #8a8a9a;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME 1: CLASSIC  (default — purple, premium)
+   ═══════════════════════════════════════════════════════════════════════════ */
+#print-area,
+#print-area[data-theme="classic"] {
+  background: #faf6ee;
+  border-radius: 16px;
+  padding: 32px;
+  color: #222;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+#print-area[data-theme="classic"] .print-title,
+#print-area:not([data-theme]) .print-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+#print-area[data-theme="classic"] .print-title h1,
+#print-area:not([data-theme]) .print-title h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px; font-weight: 700;
+  color: #7c3aed;
+  letter-spacing: 2px;
+}
+#print-area[data-theme="classic"] .print-title p,
+#print-area:not([data-theme]) .print-title p { font-size: 16px; color: #666; margin-top: 4px; }
+#print-area[data-theme="classic"] table,
+#print-area:not([data-theme]) table { width: 100%; border-collapse: collapse; }
+#print-area[data-theme="classic"] thead th,
+#print-area:not([data-theme]) thead th {
+  background: #ede9fe; color: #5b21b6;
+  padding: 10px 6px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border: 1px solid #d8d0f0; text-align: center;
+}
+#print-area[data-theme="classic"] tbody td,
+#print-area:not([data-theme]) tbody td {
+  border: 1px solid #e5e0f0; padding: 6px 7px;
+  vertical-align: top; min-height: 90px; width: calc(100% / 7);
+}
+#print-area[data-theme="classic"] tbody td.empty-print,
+#print-area:not([data-theme]) tbody td.empty-print { background: #f5f3ee; border-color: #eee; }
+#print-area[data-theme="classic"] tbody tr:nth-child(odd) td:not(.empty-print),
+#print-area:not([data-theme]) tbody tr:nth-child(odd) td:not(.empty-print) { background: #f8f5ff; }
+#print-area[data-theme="classic"] tbody tr:nth-child(even) td:not(.empty-print),
+#print-area:not([data-theme]) tbody tr:nth-child(even) td:not(.empty-print) { background: #fffdf8; }
+#print-area[data-theme="classic"] .print-dn,
+#print-area:not([data-theme]) .print-dn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px; font-weight: 700; color: #b5651d;
+  display: block; margin-bottom: 4px; line-height: 1;
+}
+#print-area[data-theme="classic"] .print-dn.sun,
+#print-area:not([data-theme]) .print-dn.sun { color: #c0392b; font-size: 24px; }
+#print-area[data-theme="classic"] .print-tasks,
+#print-area:not([data-theme]) .print-tasks { list-style: none; font-size: 10px; line-height: 1.6; }
+#print-area[data-theme="classic"] .print-tasks li,
+#print-area:not([data-theme]) .print-tasks li { margin-bottom: 1px; }
+#print-area[data-theme="classic"] .print-legend,
+#print-area:not([data-theme]) .print-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 14px;
+  padding-top: 10px; border-top: 1px solid #e0d8c8;
+  font-size: 10px; color: #666;
+}
+#print-area[data-theme="classic"] .legend-dot,
+#print-area:not([data-theme]) .legend-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME 2: CHERRY BLOSSOM  (pink, floral, soft)
+   ═══════════════════════════════════════════════════════════════════════════ */
+#print-area[data-theme="cherry"] {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  color: #2d2d2d;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+#print-area[data-theme="cherry"]::before {
+  /*content: '🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸';*/
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 4px;
+  overflow: hidden;
+  opacity: 0.45;
+  padding: 4px 0;
+  text-align: center;
+  line-height: 1;
+}
+#print-area[data-theme="cherry"] .print-title {
+  text-align: center;
+  margin-top: 28px;
+  margin-bottom: 18px;
+}
+#print-area[data-theme="cherry"] .print-title h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 38px; font-weight: 800;
+  color: #333;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+#print-area[data-theme="cherry"] .print-title p {
+  font-size: 13px; color: #aaa;
+  background: #fce4ec;
+  border: 1px solid #f8bbd0;
+  border-radius: 8px;
+  padding: 4px 14px;
+  font-weight: 600;
+  color: #e91e63;
+  margin-top: 8px;
+  display: inline-block;
+}
+#print-area[data-theme="cherry"] table { width: 100%; border-collapse: separate; border-spacing: 4px; }
+#print-area[data-theme="cherry"] thead th {
+  background: #f48fb1;
+  color: #fff;
+  padding: 8px 6px;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-radius: 20px;
+  text-align: center;
+  border: none;
+}
+#print-area[data-theme="cherry"] tbody td {
+  background: #fff;
+  border: 1.5px solid #f8bbd0;
+  border-radius: 10px;
+  padding: 8px;
+  vertical-align: top;
+  min-height: 90px;
+  width: calc(100% / 7);
+}
+#print-area[data-theme="cherry"] tbody td.empty-print {
+  background: #fce4ec11;
+  border-color: #fce4ec;
+}
+#print-area[data-theme="cherry"] .print-dn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: #c2185b;
+  display: block; margin-bottom: 4px; line-height: 1;
+}
+#print-area[data-theme="cherry"] .print-dn.sun { color: #e91e63; }
+#print-area[data-theme="cherry"] .print-tasks { list-style: none; font-size: 10px; line-height: 1.7; }
+#print-area[data-theme="cherry"] .print-tasks li { margin-bottom: 1px; }
+#print-area[data-theme="cherry"] .print-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 14px;
+  padding-top: 10px; border-top: 1.5px dashed #f8bbd0;
+  font-size: 10px; color: #888;
+}
+#print-area[data-theme="cherry"] .legend-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME 3: PASTEL RAINBOW  (colorful, playful day headers like digital planner)
+   ═══════════════════════════════════════════════════════════════════════════ */
+#print-area[data-theme="pastel"] {
+  background: #fafafa;
+  border-radius: 16px;
+  padding: 32px;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+}
+#print-area[data-theme="pastel"] .print-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#print-area[data-theme="pastel"] .print-title h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 34px; font-weight: 800;
+  background: linear-gradient(90deg, #c084fc, #60a5fa, #34d399, #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+#print-area[data-theme="pastel"] .print-title p {
+  font-size: 14px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 4px 16px;
+  color: #0284c7;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 8px;
+}
+#print-area[data-theme="pastel"] table { width: 100%; border-collapse: collapse; }
+/* Each day column gets its own pastel header color */
+#print-area[data-theme="pastel"] thead th:nth-child(1) { background: #c4b5fd; color: #5b21b6; } /* Mon - purple */
+#print-area[data-theme="pastel"] thead th:nth-child(2) { background: #a5f3fc; color: #0e7490; } /* Tue - cyan */
+#print-area[data-theme="pastel"] thead th:nth-child(3) { background: #bbf7d0; color: #166534; } /* Wed - green */
+#print-area[data-theme="pastel"] thead th:nth-child(4) { background: #fef08a; color: #854d0e; } /* Thu - yellow */
+#print-area[data-theme="pastel"] thead th:nth-child(5) { background: #fed7aa; color: #9a3412; } /* Fri - orange */
+#print-area[data-theme="pastel"] thead th:nth-child(6) { background: #fecdd3; color: #9f1239; } /* Sat - rose */
+#print-area[data-theme="pastel"] thead th:nth-child(7) { background: #bfdbfe; color: #1e40af; } /* Sun - blue */
+#print-area[data-theme="pastel"] thead th {
+  padding: 10px 6px;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  border: 2px solid #fff;
+  text-align: center;
+}
+#print-area[data-theme="pastel"] tbody td {
+  border: 2px solid #f3f4f6;
+  padding: 6px 7px;
+  vertical-align: top;
+  min-height: 90px;
+  width: calc(100% / 7);
+  background: #fff;
+  transition: background 0.2s;
+}
+/* Subtle pastel column tints */
+#print-area[data-theme="pastel"] tbody td:nth-child(1) { background: #faf5ff; }
+#print-area[data-theme="pastel"] tbody td:nth-child(2) { background: #f0fdfe; }
+#print-area[data-theme="pastel"] tbody td:nth-child(3) { background: #f0fdf4; }
+#print-area[data-theme="pastel"] tbody td:nth-child(4) { background: #fefce8; }
+#print-area[data-theme="pastel"] tbody td:nth-child(5) { background: #fff7ed; }
+#print-area[data-theme="pastel"] tbody td:nth-child(6) { background: #fff1f2; }
+#print-area[data-theme="pastel"] tbody td:nth-child(7) { background: #eff6ff; }
+#print-area[data-theme="pastel"] tbody td.empty-print { background: #f9fafb; border-color: #f3f4f6; }
+#print-area[data-theme="pastel"] .print-dn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: #6d28d9; display: block; margin-bottom: 4px;
+}
+#print-area[data-theme="pastel"] .print-dn.sun { color: #be123c; }
+#print-area[data-theme="pastel"] .print-tasks { list-style: none; font-size: 10px; line-height: 1.7; }
+#print-area[data-theme="pastel"] .print-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 14px;
+  padding-top: 10px; border-top: 2px solid #f3f4f6;
+  font-size: 10px; color: #666;
+}
+#print-area[data-theme="pastel"] .legend-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME 4: COZY KRAFT  (warm beige, rounded cells, earthy tones)
+   ═══════════════════════════════════════════════════════════════════════════ */
+#print-area[data-theme="cozy"] {
+  background: #f0ebe0;
+  border-radius: 20px;
+  padding: 32px;
+  color: #3d2c1e;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+}
+#print-area[data-theme="cozy"] .print-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+#print-area[data-theme="cozy"] .print-title h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 48px; font-weight: 700;
+  color: #6b3c1a;
+  letter-spacing: 1px;
+}
+#print-area[data-theme="cozy"] .print-title p {
+  font-size: 14px;
+  color: #9b7b5a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 4px;
+}
+#print-area[data-theme="cozy"] table { width: 100%; border-collapse: separate; border-spacing: 5px; }
+#print-area[data-theme="cozy"] thead th {
+  background: #d4956a;
+  color: #fff;
+  padding: 10px 6px;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+}
+#print-area[data-theme="cozy"] tbody td {
+  background: #fff9f0;
+  border: 2px solid #d9c8b4;
+  border-radius: 12px;
+  padding: 8px;
+  vertical-align: top;
+  min-height: 90px;
+  width: calc(100% / 7);
+}
+#print-area[data-theme="cozy"] tbody tr:nth-child(odd) td:not(.empty-print) { background: #fffaf3; }
+#print-area[data-theme="cozy"] tbody tr:nth-child(even) td:not(.empty-print) { background: #fdf6e8; }
+#print-area[data-theme="cozy"] tbody td.empty-print {
+  background: #e8e0d0;
+  border-color: #d4cabb;
+  border-radius: 12px;
+}
+#print-area[data-theme="cozy"] .print-dn {
+  font-family: 'Caveat', cursive;
+  font-size: 26px; font-weight: 700;
+  color: #6b3c1a;
+  display: block; margin-bottom: 4px; line-height: 1;
+}
+#print-area[data-theme="cozy"] .print-dn.sun { color: #b33c12; }
+#print-area[data-theme="cozy"] .print-tasks { list-style: none; font-size: 10px; line-height: 1.7; }
+#print-area[data-theme="cozy"] .print-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 14px;
+  padding-top: 10px; border-top: 2px dashed #c8a886;
+  font-size: 10px; color: #7a6045;
+}
+#print-area[data-theme="cozy"] .legend-dot {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 4px; vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME 5: MINIMAL  (ultra-clean black & white, editorial, tracker-style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+#print-area[data-theme="minimal"] {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 40px;
+  color: #111;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, sans-serif;
+  border: 1px solid #e0e0e0;
+}
+#print-area[data-theme="minimal"] .print-title {
+  text-align: center;
+  margin-bottom: 28px;
+  border-bottom: 3px solid #111;
+  padding-bottom: 16px;
+}
+#print-area[data-theme="minimal"] .print-title h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; font-weight: 400;
+  color: #111;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+#print-area[data-theme="minimal"] .print-title p {
+  font-size: 12px;
+  color: #555;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-top: 6px;
+}
+#print-area[data-theme="minimal"] table { width: 100%; border-collapse: collapse; }
+#print-area[data-theme="minimal"] thead th {
+  background: transparent;
+  color: #111;
+  padding: 8px 6px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  border-bottom: 2px solid #111;
+  border-right: 1px solid #ddd;
+  text-align: center;
+}
+#print-area[data-theme="minimal"] thead th:last-child { border-right: none; }
+#print-area[data-theme="minimal"] tbody td {
+  border: 1px solid #e0e0e0;
+  padding: 6px 8px;
+  vertical-align: top;
+  min-height: 90px;
+  width: calc(100% / 7);
+  background: #fff;
+}
+#print-area[data-theme="minimal"] tbody td.empty-print {
+  background: #f9f9f9;
+  border-color: #ececec;
+}
+#print-area[data-theme="minimal"] .print-dn {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: #111;
+  display: block; margin-bottom: 4px; line-height: 1;
+}
+#print-area[data-theme="minimal"] .print-dn.sun { color: #888; }
+#print-area[data-theme="minimal"] .print-tasks { list-style: none; font-size: 10px; line-height: 1.7; color: #333; }
+#print-area[data-theme="minimal"] .print-tasks li { margin-bottom: 1px; }
+/* Minimal theme desaturates the task colors */
+#print-area[data-theme="minimal"] .print-tasks li span {
+  color: #111 !important;
+  font-weight: 500 !important;
+}
+#print-area[data-theme="minimal"] .print-task-checkbox {
+  border-color: #111 !important;
+  border-radius: 0 !important;
+}
+#print-area[data-theme="minimal"] .print-legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 14px;
+  padding-top: 10px; border-top: 1px solid #ddd;
+  font-size: 10px; color: #555;
+}
+#print-area[data-theme="minimal"] .legend-dot {
+  display: inline-block; width: 6px; height: 6px;
+  background: #111 !important;
+  border-radius: 0;
+  margin-right: 4px; vertical-align: middle;
+}
+
+/* ─── Print: preserve theme on paper ─── */
+@media print {
+  #print-area[data-theme] * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

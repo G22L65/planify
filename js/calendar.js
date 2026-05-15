@@ -99,7 +99,7 @@ const Calendar = (() => {
             html += '<ul class="print-tasks">';
             tasks.forEach((t, i) => {
               const color = t.color || '#888';
-              html += `<li><span style="color:${color};font-weight:700">${i+1}. ${t.title}</span></li>`;
+              html += `<li style="display:flex;justify-content:space-between;align-items:flex-start;gap:4px;margin-bottom:2px;"><span style="color:${color};font-weight:700;flex:1;">${i+1}. ${t.title}</span><div class="print-task-checkbox" style="width:10px;height:10px;border:1.5px solid ${color};border-radius:2px;flex-shrink:0;margin-top:2px;"></div></li>`;
             });
             html += '</ul>';
           }

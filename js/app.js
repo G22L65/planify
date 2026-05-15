@@ -2,6 +2,15 @@
 const App = (() => {
   const STORAGE_KEY = 'planify_data';
   const SETTINGS_KEY = 'planify_settings';
+  const THEME_KEY = 'planify_theme';
+
+  const THEME_NAMES = {
+    classic: 'Classic',
+    cherry:  'Cherry Blossom',
+    pastel:  'Pastel Rainbow',
+    cozy:    'Cozy Kraft',
+    minimal: 'Minimal'
+  };
 
   let state = {
     currentView: 'landing',
@@ -283,11 +292,31 @@ const App = (() => {
     }
   }
 
+  // ─── Theme ───
+  function getActiveTheme() {
+    return localStorage.getItem(THEME_KEY) || 'classic';
+  }
+  function applyTheme(themeName) {
+    const printArea = document.getElementById('print-area');
+    if (printArea) printArea.setAttribute('data-theme', themeName);
+    localStorage.setItem(THEME_KEY, themeName);
+    // Update swatch UI
+    document.querySelectorAll('.theme-swatch').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === themeName);
+    });
+    const nameEl = document.getElementById('theme-picker-name');
+    if (nameEl) nameEl.textContent = THEME_NAMES[themeName] || themeName;
+  }
+
   // ─── Preview ───
   function initPreview() {
     const printArea = document.getElementById('print-area');
     const grid = Calendar.generateGrid(state.selectedYear, state.selectedMonth);
     Calendar.renderPrintGrid(grid, state, printArea);
+    applyTheme(getActiveTheme());
+    // Sync swatch name label on first load
+    const nameEl = document.getElementById('theme-picker-name');
+    if (nameEl) nameEl.textContent = THEME_NAMES[getActiveTheme()] || 'Classic';
   }
 
   // ─── Export PDF ───
@@ -335,7 +364,7 @@ const App = (() => {
 
   // ─── Bulk Apply ───
   function showBulkModal() {
-    showModal('Apply Tasks to All Weekdays', `
+    showModal('Bulk Add Tasks', `
       <div class="modal-field">
         <label>Task Title</label>
         <input type="text" id="bulk-title" placeholder="e.g. Morning Workout" />
@@ -348,12 +377,31 @@ const App = (() => {
         </select>
       </div>
       <div class="modal-field">
+        <label>Color</label>
+        <div class="pop-colors" id="bulk-colors">
+          ${Editor.PRESET_COLORS.map((c, i) =>
+            `<button class="pop-color-btn ${i === 0 ? 'active' : ''}" data-color="${c}" style="background:${c}"></button>`
+          ).join('')}
+        </div>
+      </div>
+      <div class="modal-field">
         <label>Apply To</label>
         <select id="bulk-target" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;color:var(--text-primary);">
-          <option value="weekdays">All Weekdays (Mon-Fri)</option>
-          <option value="weekends">Weekends (Sat-Sun)</option>
-          <option value="sundays">Sundays Only</option>
-          <option value="all">Every Day</option>
+          <optgroup label="── Groups ──">
+            <option value="all">Every Day</option>
+            <option value="weekdays">Mon – Fri (Weekdays)</option>
+            <option value="mon-sat">Mon – Sat</option>
+            <option value="weekends">Sat – Sun (Weekends)</option>
+          </optgroup>
+          <optgroup label="── Individual Days ──">
+            <option value="0">Mondays Only</option>
+            <option value="1">Tuesdays Only</option>
+            <option value="2">Wednesdays Only</option>
+            <option value="3">Thursdays Only</option>
+            <option value="4">Fridays Only</option>
+            <option value="5">Saturdays Only</option>
+            <option value="6">Sundays Only</option>
+          </optgroup>
         </select>
       </div>
     `, () => {
@@ -361,29 +409,44 @@ const App = (() => {
       if (!title) return;
       const catName = document.getElementById('bulk-cat').value;
       const target = document.getElementById('bulk-target').value;
+      
+      const activeBtn = document.querySelector('#bulk-colors .pop-color-btn.active');
       const cat = state.categories.find(c => c.name === catName);
-      const color = cat ? cat.color : '#7c3aed';
+      const color = activeBtn ? activeBtn.dataset.color : (cat ? cat.color : '#7c3aed');
 
       const grid = state.calendarGrid;
+      let count = 0;
       grid.weeks.forEach(week => {
         week.forEach(day => {
           if (day.isEmpty) return;
           let shouldAdd = false;
-          if (target === 'weekdays') shouldAdd = day.dayOfWeek < 5;
+          if (target === 'all') shouldAdd = true;
+          else if (target === 'weekdays') shouldAdd = day.dayOfWeek < 5;
+          else if (target === 'mon-sat') shouldAdd = day.dayOfWeek < 6;
           else if (target === 'weekends') shouldAdd = day.dayOfWeek >= 5;
-          else if (target === 'sundays') shouldAdd = day.dayOfWeek === 6;
-          else shouldAdd = true;
+          else shouldAdd = day.dayOfWeek === parseInt(target);
 
           if (shouldAdd) {
             if (!state.days[day.date]) state.days[day.date] = [];
             state.days[day.date].push({ title, category: catName, color, time: '' });
+            count++;
           }
         });
       });
       saveState();
       Editor.renderTasks(state);
-      toast(`"${title}" added to ${target}!`, 'success');
+      const targetLabel = document.getElementById('bulk-target').options[document.getElementById('bulk-target').selectedIndex].text;
+      toast(`"${title}" added to ${count} day${count !== 1 ? 's' : ''} (${targetLabel})!`, 'success');
     });
+
+    setTimeout(() => {
+      document.querySelectorAll('#bulk-colors .pop-color-btn').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('#bulk-colors .pop-color-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        };
+      });
+    }, 50);
   }
 
   // ─── Getters ───
@@ -434,6 +497,12 @@ const App = (() => {
     document.getElementById('export-pdf-btn').onclick = exportPDF;
     document.getElementById('print-btn').onclick = () => PDFExport.printPage();
     document.getElementById('gcal-sync-btn').onclick = syncToGCal;
+
+    // Theme swatches
+    document.getElementById('theme-swatches')?.addEventListener('click', e => {
+      const btn = e.target.closest('.theme-swatch');
+      if (btn) applyTheme(btn.dataset.theme);
+    });
 
     // Keyboard shortcuts
     document.addEventListener('keydown', e => {

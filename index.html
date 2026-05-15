@@ -6,6 +6,7 @@
   <title>Planify — AI Monthly Planner</title>
   <meta name="description" content="Create beautiful monthly planners with AI or customize them manually. Export to PDF and sync with Google Calendar.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/themes.css">
   <!-- html2pdf.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" defer></script>
   <!-- Google APIs (Calendar) -->
@@ -113,9 +114,20 @@
       <div class="preview-toolbar">
         <div style="display:flex;align-items:center;gap:12px">
           <button class="btn btn-ghost" id="back-to-builder">← Back to Builder</button>
-          <h2 class="gradient-text">Preview & Export</h2>
+          <h2 class="gradient-text">Preview &amp; Export</h2>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <div class="theme-picker-wrap">
+            <span class="theme-picker-label">🎨 Theme</span>
+            <div class="theme-swatches" id="theme-swatches">
+              <button class="theme-swatch active" data-theme="classic" title="Classic"></button>
+              <button class="theme-swatch" data-theme="cherry" title="Cherry Blossom"></button>
+              <button class="theme-swatch" data-theme="pastel" title="Pastel Rainbow"></button>
+              <button class="theme-swatch" data-theme="cozy" title="Cozy Kraft"></button>
+              <button class="theme-swatch" data-theme="minimal" title="Minimal"></button>
+            </div>
+            <span class="theme-picker-name" id="theme-picker-name">Classic</span>
+          </div>
           <button class="btn btn-secondary btn-sm" id="print-btn">🖨 Print</button>
           <button class="btn btn-primary btn-sm" id="export-pdf-btn">📄 Export PDF</button>
           <button class="btn btn-success btn-sm" id="gcal-sync-btn">📅 Sync to Google Calendar</button>
