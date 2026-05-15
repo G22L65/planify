@@ -464,7 +464,7 @@ const App = (() => {
 
     // Event bindings
     document.getElementById('nav-settings-btn').onclick = showSettingsModal;
-    document.getElementById('nav-back-btn').onclick = () => showView('builder');
+    document.getElementById('nav-back-btn').onclick = () => showView('landing');
 
     // Landing cards
     document.getElementById('card-ai').onclick = () => {
