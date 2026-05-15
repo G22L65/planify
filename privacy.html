@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Planify</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app">
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <div class="logo-icon">✦</div>
+      <span class="gradient-text">Planify</span>
+    </a>
+    <div class="navbar-actions">
+      <a href="index.html" class="btn btn-ghost btn-icon" title="Back to Home">←</a>
+    </div>
+  </nav>
+
+  <!-- ─── Content ─── -->
+  <div class="view" style="display: flex; flex-direction: column; align-items: center; padding: 40px 24px;">
+    <div style="max-width: 800px; width: 100%; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; box-shadow: var(--shadow-lg);">
+      <h1 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 24px;">Privacy Policy</h1>
+      <div style="color: var(--text-secondary); line-height: 1.8;">
+        <h3 style="color: var(--text-primary); margin-top: 24px; margin-bottom: 8px;">1. Data Collection</h3>
+        <p>Planify stores all your planner data locally on your device using localStorage. We do not transmit your tasks, categories, or schedules to any external servers.</p>
+        
+        <h3 style="color: var(--text-primary); margin-top: 24px; margin-bottom: 8px;">2. AI Generation</h3>
+        <p>If you use the AI Generation feature, the prompt you enter is sent securely to the Google Gemini API to generate the calendar data. No personal data is included in this request beyond what you type into the prompt box.</p>
+        
+        <h3 style="color: var(--text-primary); margin-top: 24px; margin-bottom: 8px;">3. Google Calendar Sync</h3>
+        <p>When you use the Google Calendar sync feature, Planify communicates directly with Google APIs. Your OAuth tokens are stored locally on your device and are never sent to our servers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
