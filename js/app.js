@@ -475,6 +475,21 @@ const App = (() => {
     document.getElementById('card-pdf').onclick = () => showView('builder');
     document.getElementById('card-sync').onclick = () => showView('builder');
 
+    // Footer Links
+    document.getElementById('link-privacy').onclick = (e) => {
+      e.preventDefault();
+      showModal('Privacy Policy', '<div style="color:var(--text-secondary);font-size:14px;line-height:1.6;max-height:400px;overflow-y:auto;padding-right:12px;"><h3>1. Data Collection</h3><p>Planify stores all your planner data locally on your device using localStorage. We do not transmit your tasks, categories, or schedules to any external servers.</p><br><h3>2. AI Generation</h3><p>If you use the AI Generation feature, the prompt you enter is sent securely to the Google Gemini API to generate the calendar data. No personal data is included in this request beyond what you type into the prompt box.</p><br><h3>3. Google Calendar Sync</h3><p>When you use the Google Calendar sync feature, Planify communicates directly with Google APIs. Your OAuth tokens are stored locally on your device and are never sent to our servers.</p></div>');
+      document.querySelector('.modal-save').style.display = 'none';
+      document.querySelector('.modal-cancel').textContent = 'Close';
+    };
+    
+    document.getElementById('link-terms').onclick = (e) => {
+      e.preventDefault();
+      showModal('Terms of Service', '<div style="color:var(--text-secondary);font-size:14px;line-height:1.6;max-height:400px;overflow-y:auto;padding-right:12px;"><h3>1. Acceptance of Terms</h3><p>By using Planify, you agree to these Terms of Service. Planify is provided "as-is" without any warranties of any kind.</p><br><h3>2. User Responsibilities</h3><p>You are responsible for ensuring that the data you input does not violate any laws. You are also responsible for keeping your own backups, as clearing your browser data may permanently delete your planners.</p><br><h3>3. API Usage</h3><p>You agree to adhere to the Terms of Service of Google Gemini and Google Calendar when using their respective integrations through this application.</p></div>');
+      document.querySelector('.modal-save').style.display = 'none';
+      document.querySelector('.modal-cancel').textContent = 'Close';
+    };
+
     // Month/Year selectors
     document.getElementById('month-select').onchange = function() {
       state.selectedMonth = parseInt(this.value);
