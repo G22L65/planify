@@ -553,5 +553,5 @@ td:hover .add-task-btn { opacity: 1; }
   .navbar, .builder-view, .landing-view,
   .preview-toolbar, .toast-container, .modal-overlay { display: none !important; }
   .preview-view { padding: 0; }
-  #print-area { border-radius: 0; box-shadow: none; }
+  #print-area { border-radius: 0; box-shadow: none; overflow: visible !important; }
 }

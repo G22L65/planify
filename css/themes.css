@@ -58,6 +58,15 @@
   min-width: 80px;
 }
 
+/* ─── Responsive Print Area ─── */
+#print-area {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#print-area table {
+  min-width: 800px !important; /* Prevent 7 columns from squishing on mobile */
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    THEME 1: CLASSIC  (default — purple, premium)
    ═══════════════════════════════════════════════════════════════════════════ */
