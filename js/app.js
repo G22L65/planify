@@ -377,6 +377,10 @@ const App = (() => {
         </select>
       </div>
       <div class="modal-field">
+        <label>Time (Optional)</label>
+        <input type="time" id="bulk-time" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;color:var(--text-primary);color-scheme:dark;" />
+      </div>
+      <div class="modal-field">
         <label>Color</label>
         <div class="pop-colors" id="bulk-colors">
           ${Editor.PRESET_COLORS.map((c, i) =>
@@ -408,6 +412,7 @@ const App = (() => {
       const title = document.getElementById('bulk-title').value.trim();
       if (!title) return;
       const catName = document.getElementById('bulk-cat').value;
+      const timeVal = document.getElementById('bulk-time').value;
       const target = document.getElementById('bulk-target').value;
       
       const activeBtn = document.querySelector('#bulk-colors .pop-color-btn.active');
@@ -428,7 +433,7 @@ const App = (() => {
 
           if (shouldAdd) {
             if (!state.days[day.date]) state.days[day.date] = [];
-            state.days[day.date].push({ title, category: catName, color, time: '' });
+            state.days[day.date].push({ title, category: catName, color, time: timeVal });
             count++;
           }
         });

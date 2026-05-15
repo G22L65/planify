@@ -60,6 +60,8 @@
 
 /* ─── Responsive Print Area ─── */
 #print-area {
+  width: 100%;
+  box-sizing: border-box;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }

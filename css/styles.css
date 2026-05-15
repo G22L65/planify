@@ -409,7 +409,7 @@ td:hover .add-task-btn { opacity: 1; }
 .category-tag .remove-cat:hover { color: var(--danger); }
 
 /* ─── Preview View ─── */
-.preview-view { padding: 24px 32px; }
+.preview-view { padding: 24px 32px; width: 100%; max-width: 100vw; overflow-x: hidden; }
 .preview-toolbar {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
